@@ -29,16 +29,18 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
@@ -55,18 +57,18 @@
             this.lblTotalBill = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.gdvBillItemDetails = new System.Windows.Forms.DataGridView();
-            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gdvBillPaymentDetails = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PaymentMode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalBillAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PaymentMode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gdvBillDetails)).BeginInit();
             this.panel3.SuspendLayout();
@@ -121,6 +123,14 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(176)))), ((int)(((byte)(110)))));
             this.gdvBillDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gdvBillDetails.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(56)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("DaytonaPro-Semibold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gdvBillDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gdvBillDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gdvBillDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BillID,
@@ -290,8 +300,8 @@
             this.gdvBillItemDetails.AllowUserToDeleteRows = false;
             this.gdvBillItemDetails.AllowUserToResizeColumns = false;
             this.gdvBillItemDetails.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(164)))), ((int)(((byte)(71)))));
-            this.gdvBillItemDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(164)))), ((int)(((byte)(71)))));
+            this.gdvBillItemDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.gdvBillItemDetails.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(56)))), ((int)(((byte)(64)))));
             this.gdvBillItemDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gdvBillItemDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -307,38 +317,14 @@
             this.gdvBillItemDetails.TabIndex = 16;
             this.gdvBillItemDetails.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.gdvBillItemDetails_DataError);
             // 
-            // ItemID
-            // 
-            this.ItemID.DataPropertyName = "ItemID";
-            this.ItemID.HeaderText = "ID";
-            this.ItemID.Name = "ItemID";
-            this.ItemID.ReadOnly = true;
-            this.ItemID.Visible = false;
-            // 
-            // ItemName
-            // 
-            this.ItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ItemName.DataPropertyName = "ItemName";
-            this.ItemName.HeaderText = "Item Name";
-            this.ItemName.Name = "ItemName";
-            this.ItemName.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Total.DataPropertyName = "Total";
-            this.Total.HeaderText = "Amount";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            // 
             // gdvBillPaymentDetails
             // 
             this.gdvBillPaymentDetails.AllowUserToAddRows = false;
             this.gdvBillPaymentDetails.AllowUserToDeleteRows = false;
             this.gdvBillPaymentDetails.AllowUserToResizeColumns = false;
             this.gdvBillPaymentDetails.AllowUserToResizeRows = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
-            this.gdvBillPaymentDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.gdvBillPaymentDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.gdvBillPaymentDetails.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(56)))), ((int)(((byte)(64)))));
             this.gdvBillPaymentDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gdvBillPaymentDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -354,11 +340,94 @@
             this.gdvBillPaymentDetails.TabIndex = 17;
             this.gdvBillPaymentDetails.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.gdvBillPaymentDetails_DataError);
             // 
+            // BillID
+            // 
+            this.BillID.DataPropertyName = "BillID";
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(221)))), ((int)(((byte)(155)))));
+            this.BillID.DefaultCellStyle = dataGridViewCellStyle3;
+            this.BillID.HeaderText = "Bill No";
+            this.BillID.Name = "BillID";
+            this.BillID.ReadOnly = true;
+            // 
+            // BillDate
+            // 
+            this.BillDate.DataPropertyName = "Date";
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(221)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            this.BillDate.DefaultCellStyle = dataGridViewCellStyle4;
+            this.BillDate.HeaderText = "Date";
+            this.BillDate.Name = "BillDate";
+            this.BillDate.ReadOnly = true;
+            this.BillDate.Width = 150;
+            // 
+            // TotalTax
+            // 
+            this.TotalTax.DataPropertyName = "TotalTax";
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(221)))), ((int)(((byte)(155)))));
+            this.TotalTax.DefaultCellStyle = dataGridViewCellStyle5;
+            this.TotalTax.HeaderText = "TotalTax";
+            this.TotalTax.Name = "TotalTax";
+            this.TotalTax.ReadOnly = true;
+            this.TotalTax.Width = 150;
+            // 
+            // Discount
+            // 
+            this.Discount.DataPropertyName = "TotalDiscount";
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(221)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle6.Format = "C2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.Discount.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Discount.HeaderText = "Total Discount";
+            this.Discount.Name = "Discount";
+            this.Discount.ReadOnly = true;
+            this.Discount.Width = 150;
+            // 
+            // TotalBillAmount
+            // 
+            this.TotalBillAmount.DataPropertyName = "TotalBillAmount";
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(221)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.TotalBillAmount.DefaultCellStyle = dataGridViewCellStyle7;
+            this.TotalBillAmount.HeaderText = "Amount";
+            this.TotalBillAmount.Name = "TotalBillAmount";
+            this.TotalBillAmount.ReadOnly = true;
+            this.TotalBillAmount.Width = 150;
+            // 
+            // ItemID
+            // 
+            this.ItemID.DataPropertyName = "ItemID";
+            this.ItemID.HeaderText = "ID";
+            this.ItemID.Name = "ItemID";
+            this.ItemID.ReadOnly = true;
+            this.ItemID.Visible = false;
+            // 
+            // ItemName
+            // 
+            this.ItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ItemName.DataPropertyName = "ItemName";
+            this.ItemName.FillWeight = 152.2843F;
+            this.ItemName.HeaderText = "Item Name";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "Total";
+            dataGridViewCellStyle9.Format = "C2";
+            dataGridViewCellStyle9.NullValue = null;
+            this.Total.DefaultCellStyle = dataGridViewCellStyle9;
+            this.Total.FillWeight = 47.71573F;
+            this.Total.HeaderText = "Amount";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "ID";
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(73)))), ((int)(((byte)(250)))));
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(73)))), ((int)(((byte)(250)))));
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewTextBoxColumn4.HeaderText = "ID";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
@@ -368,78 +437,22 @@
             // 
             this.PaymentMode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PaymentMode.DataPropertyName = "PaymentMode";
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(73)))), ((int)(((byte)(250)))));
-            this.PaymentMode.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(73)))), ((int)(((byte)(250)))));
+            this.PaymentMode.DefaultCellStyle = dataGridViewCellStyle12;
             this.PaymentMode.HeaderText = "Pay Mode";
             this.PaymentMode.Name = "PaymentMode";
             this.PaymentMode.ReadOnly = true;
             // 
             // Amount
             // 
-            this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(73)))), ((int)(((byte)(250)))));
-            dataGridViewCellStyle11.Format = "C2";
-            dataGridViewCellStyle11.NullValue = null;
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(73)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle13.Format = "C2";
+            dataGridViewCellStyle13.NullValue = null;
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle13;
             this.Amount.HeaderText = "Amount";
             this.Amount.Name = "Amount";
             this.Amount.ReadOnly = true;
-            // 
-            // BillID
-            // 
-            this.BillID.DataPropertyName = "BillID";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(221)))), ((int)(((byte)(155)))));
-            this.BillID.DefaultCellStyle = dataGridViewCellStyle2;
-            this.BillID.HeaderText = "Bill No";
-            this.BillID.Name = "BillID";
-            this.BillID.ReadOnly = true;
-            // 
-            // BillDate
-            // 
-            this.BillDate.DataPropertyName = "Date";
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(221)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.BillDate.DefaultCellStyle = dataGridViewCellStyle3;
-            this.BillDate.HeaderText = "Date";
-            this.BillDate.Name = "BillDate";
-            this.BillDate.ReadOnly = true;
-            this.BillDate.Width = 150;
-            // 
-            // TotalTax
-            // 
-            this.TotalTax.DataPropertyName = "TotalTax";
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(221)))), ((int)(((byte)(155)))));
-            this.TotalTax.DefaultCellStyle = dataGridViewCellStyle4;
-            this.TotalTax.HeaderText = "TotalTax";
-            this.TotalTax.Name = "TotalTax";
-            this.TotalTax.ReadOnly = true;
-            this.TotalTax.Width = 150;
-            // 
-            // Discount
-            // 
-            this.Discount.DataPropertyName = "TotalDiscount";
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(221)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle5.Format = "C2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.Discount.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Discount.HeaderText = "Total Discount";
-            this.Discount.Name = "Discount";
-            this.Discount.ReadOnly = true;
-            this.Discount.Width = 150;
-            // 
-            // TotalBillAmount
-            // 
-            this.TotalBillAmount.DataPropertyName = "TotalBillAmount";
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(221)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle6.Format = "C2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.TotalBillAmount.DefaultCellStyle = dataGridViewCellStyle6;
-            this.TotalBillAmount.HeaderText = "Amount";
-            this.TotalBillAmount.Name = "TotalBillAmount";
-            this.TotalBillAmount.ReadOnly = true;
-            this.TotalBillAmount.Width = 150;
             // 
             // frmBillDetails
             // 
@@ -489,18 +502,18 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.DataGridView gdvBillItemDetails;
         private System.Windows.Forms.DataGridView gdvBillPaymentDetails;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DateTimePicker dtpBillDate;
         private System.Windows.Forms.Button btnGetDetails;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PaymentMode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillID;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalTax;
         private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalBillAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PaymentMode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
     }
 }

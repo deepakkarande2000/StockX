@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
@@ -69,6 +69,7 @@
             this.gdvPendingDetails = new System.Windows.Forms.DataGridView();
             this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BillDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MobileNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,7 +90,7 @@
             this.panel3.Location = new System.Drawing.Point(1, 1);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(882, 32);
+            this.panel3.Size = new System.Drawing.Size(885, 32);
             this.panel3.TabIndex = 12;
             // 
             // label2
@@ -110,7 +111,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnClose.Location = new System.Drawing.Point(835, 0);
+            this.btnClose.Location = new System.Drawing.Point(838, 0);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(46, 36);
@@ -130,21 +131,21 @@
             this.gdvItemDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TxnDate,
             this.paidAmount});
-            this.gdvItemDetails.Location = new System.Drawing.Point(620, 237);
+            this.gdvItemDetails.Location = new System.Drawing.Point(693, 237);
             this.gdvItemDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gdvItemDetails.Name = "gdvItemDetails";
             this.gdvItemDetails.ReadOnly = true;
             this.gdvItemDetails.RowHeadersVisible = false;
             this.gdvItemDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gdvItemDetails.Size = new System.Drawing.Size(254, 283);
+            this.gdvItemDetails.Size = new System.Drawing.Size(181, 62);
             this.gdvItemDetails.TabIndex = 14;
             // 
             // TxnDate
             // 
             this.TxnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.TxnDate.DataPropertyName = "TxnDate";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(105)))), ((int)(((byte)(137)))));
-            this.TxnDate.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(105)))), ((int)(((byte)(137)))));
+            this.TxnDate.DefaultCellStyle = dataGridViewCellStyle9;
             this.TxnDate.HeaderText = "Paid Date";
             this.TxnDate.Name = "TxnDate";
             this.TxnDate.ReadOnly = true;
@@ -242,7 +243,7 @@
             this.panel4.Controls.Add(this.btnClear);
             this.panel4.Controls.Add(this.btnDelete);
             this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Location = new System.Drawing.Point(54, 255);
+            this.panel4.Location = new System.Drawing.Point(164, 255);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(523, 44);
@@ -468,13 +469,14 @@
             this.gdvPendingDetails.AllowUserToDeleteRows = false;
             this.gdvPendingDetails.AllowUserToResizeColumns = false;
             this.gdvPendingDetails.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(231)))), ((int)(((byte)(210)))));
-            this.gdvPendingDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(231)))), ((int)(((byte)(210)))));
+            this.gdvPendingDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.gdvPendingDetails.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(56)))), ((int)(((byte)(64)))));
             this.gdvPendingDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gdvPendingDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustomerID,
             this.BillID,
+            this.BillDate,
             this.Name,
             this.Address,
             this.MobileNo,
@@ -483,25 +485,25 @@
             this.gdvPendingDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gdvPendingDetails.Name = "gdvPendingDetails";
             this.gdvPendingDetails.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("DaytonaPro-Semibold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gdvPendingDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("DaytonaPro-Semibold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gdvPendingDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.gdvPendingDetails.RowHeadersVisible = false;
             this.gdvPendingDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gdvPendingDetails.Size = new System.Drawing.Size(596, 213);
+            this.gdvPendingDetails.Size = new System.Drawing.Size(844, 213);
             this.gdvPendingDetails.TabIndex = 43;
             this.gdvPendingDetails.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gdvPendingDetails_CellDoubleClick);
             // 
             // CustomerID
             // 
             this.CustomerID.DataPropertyName = "CustomerID";
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(217)))), ((int)(((byte)(177)))));
-            this.CustomerID.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(217)))), ((int)(((byte)(177)))));
+            this.CustomerID.DefaultCellStyle = dataGridViewCellStyle11;
             this.CustomerID.HeaderText = "ID";
             this.CustomerID.Name = "CustomerID";
             this.CustomerID.ReadOnly = true;
@@ -514,14 +516,20 @@
             this.BillID.Name = "BillID";
             this.BillID.ReadOnly = true;
             this.BillID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BillID.Visible = false;
+            // 
+            // BillDate
+            // 
+            this.BillDate.DataPropertyName = "BillDate";
+            this.BillDate.HeaderText = "BillDate";
+            this.BillDate.Name = "BillDate";
+            this.BillDate.ReadOnly = true;
             // 
             // Name
             // 
             this.Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Name.DataPropertyName = "Name";
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(217)))), ((int)(((byte)(177)))));
-            this.Name.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(217)))), ((int)(((byte)(177)))));
+            this.Name.DefaultCellStyle = dataGridViewCellStyle12;
             this.Name.HeaderText = "Name";
             this.Name.Name = "Name";
             this.Name.ReadOnly = true;
@@ -529,8 +537,8 @@
             // Address
             // 
             this.Address.DataPropertyName = "Add";
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(217)))), ((int)(((byte)(177)))));
-            this.Address.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(217)))), ((int)(((byte)(177)))));
+            this.Address.DefaultCellStyle = dataGridViewCellStyle13;
             this.Address.HeaderText = "Address";
             this.Address.Name = "Address";
             this.Address.ReadOnly = true;
@@ -538,8 +546,8 @@
             // MobileNo
             // 
             this.MobileNo.DataPropertyName = "Mobile";
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(217)))), ((int)(((byte)(177)))));
-            this.MobileNo.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(217)))), ((int)(((byte)(177)))));
+            this.MobileNo.DefaultCellStyle = dataGridViewCellStyle14;
             this.MobileNo.HeaderText = "Mobile";
             this.MobileNo.Name = "MobileNo";
             this.MobileNo.ReadOnly = true;
@@ -547,14 +555,13 @@
             // TotalPending
             // 
             this.TotalPending.DataPropertyName = "Total Pending";
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(217)))), ((int)(((byte)(177)))));
-            dataGridViewCellStyle7.Format = "C2";
-            dataGridViewCellStyle7.NullValue = null;
-            this.TotalPending.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(217)))), ((int)(((byte)(177)))));
+            dataGridViewCellStyle15.Format = "C2";
+            dataGridViewCellStyle15.NullValue = null;
+            this.TotalPending.DefaultCellStyle = dataGridViewCellStyle15;
             this.TotalPending.HeaderText = "PendingTotal";
             this.TotalPending.Name = "TotalPending";
             this.TotalPending.ReadOnly = true;
-            this.TotalPending.Width = 120;
             // 
             // FrmPendingClearance
             // 
@@ -621,12 +628,13 @@
         private System.Windows.Forms.DateTimePicker dtpBillDate;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblNewPending;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BillDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn MobileNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalPending;
-        private System.Windows.Forms.Label lblNewPending;
     }
 }

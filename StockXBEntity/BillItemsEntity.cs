@@ -18,6 +18,7 @@ namespace StockXBEntity
         public decimal? Qty { get; set; }
         public decimal DiscPer { get; set; }
         public decimal DiscAmount { get; set; }
+        public decimal TaxAmount { get; set; }
         public decimal Total { get; set; }
 
     }

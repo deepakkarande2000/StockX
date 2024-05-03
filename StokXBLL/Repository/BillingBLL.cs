@@ -29,7 +29,7 @@ namespace StokXBLL.Repository
                 {
                     _sqlDbHelper.FunExecuteNonQuery("InsertUpdateBillingItemsDetails",
                         item.BillID, item.ItemID, item.UnitID, item.Date, item.Rate, item.Qty,
-                        item.DiscPer, item.DiscAmount, item.Total);
+                        item.DiscPer, item.DiscAmount,item.TaxAmount, item.Total);
                     _sqlDbHelper.FunExecuteNonQuery("AddSubstractStock", item.ItemID, item.UnitID, item.Qty, 0);
                 }
                 foreach (var item in billPaymentEntity)
@@ -119,6 +119,11 @@ namespace StokXBLL.Repository
         public async Task UpdatePaymentDetails(long Bill, string BillDate, int PaymentMode, decimal Amount)
         {
              _sqlDbHelper.FunExecuteNonQuery("InsertUpdateBillPaymentDetails", Bill, BillDate, PaymentMode, Amount);
+        }
+
+        public async Task<DataSet> GetSales()
+        {
+           return _sqlDbHelper.FunExecuteDataSet("GetDayWiseSales");
         }
 
         public async Task<DataSet> GetBillTax(string BillID)

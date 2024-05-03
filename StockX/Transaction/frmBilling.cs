@@ -90,19 +90,6 @@ namespace StockX.Transaction
                         txtBarcode.Text = "";
                         txtBarcode.Focus();
                     }
-                    //lstItemSold.Clear();
-                    //if (lstItemSold.Count > 0 && lstItemSold.Where(c => c.BarcodeID==txtBarcode.Text).Count() > 0)
-                    //{
-                    //   
-                    //        var result = lstItemSold.Where(c => c.BarcodeID.Contains(txtBarcode.Text)).FirstOrDefault();
-
-                    //        if (result != null)
-                    //        {                            
-                    //            lstItemSold.Add(result);
-                    //        }
-                    //    
-                    //}
-
                     if (txtBarcode.Text.Trim().Length > 7)
                     {
                         if (lstItemSold.Count > 0 && lstItemSold.Where(c => c.BarcodeID.ToString().ToLower()
@@ -112,17 +99,28 @@ namespace StockX.Transaction
                           
                             if (result !=null)
                             {
-                                result.Qty++;
-                                result.Tax = result.Tax + result.Tax;
-                                result.Total = result.Qty * result.Rate;
-                                result.DiscAmount = result.DiscAmount + result.DiscAmount;
-                                lstItemSold.Remove(result);
-                                lstItemSold.Add(result);
-                                AppendDatasourceToGrid(lstItemSold);
-                                await CalculateTotal();
-                                ClearAllControls();
-                                txtBarcode.Text = "";
+                                var objresult = dsAllItemDetails.Tables[0].AsEnumerable()
+                                   .Where(c => c.Field<string>("BarcodeID")
+                                   .Contains(txtBarcode.Text)).FirstOrDefault();
+
+                                StoreInSoldItemList(objresult);
                                 booClearBarcodeText = true;
+                                ClearAllControls();
+                                txtBarcode.SelectAll();
+                                //SoldItemsEntity soldItemsEntity = new SoldItemsEntity();
+                                //soldItemsEntity = result;
+                                //soldItemsEntity.Qty += result.Qty;
+                                //soldItemsEntity.Tax += result.Tax;
+                                //soldItemsEntity.Total += result.Total;
+                                //soldItemsEntity.DiscAmount += result.DiscAmount;
+                                //lstItemSold.Remove(soldItemsEntity);
+                                //lstItemSold.Add(soldItemsEntity);
+
+                                //AppendDatasourceToGrid(lstItemSold);
+                                //await CalculateTotal();
+                                //ClearAllControls();
+                                //txtBarcode.Text = "";
+                                //booClearBarcodeText = true;
                                 //return;
                             }
                             else
@@ -136,7 +134,6 @@ namespace StockX.Transaction
                             if (txtBarcode.Text.Trim().Length == 8)
                             {
                                 var result = dsAllItemDetails.Tables[0].AsEnumerable()
-
                                     .Where(c => c.Field<string>("BarcodeID")
                                     .Contains(txtBarcode.Text)).FirstOrDefault();
 
@@ -186,147 +183,101 @@ namespace StockX.Transaction
             }
         }
 
-        public async Task SearchItemDetails(string Barcode,string ItemName)
+        public async Task SearchItemDetails(string Barcode, string ItemName)
         {
 
             if (ItemName.Trim() != "")
             {
-                //lstItemSold.Clear();
-                if (lstItemSold.Count > 0 && lstItemSold.Where(c => c.ItemName.ToLower() == ItemName.ToLower()).Count() > 0)
+                if (ItemName.Trim().Length > 7)
                 {
-                    var result = lstItemSold.Where(c => c.ItemName.ToLower().Contains(ItemName.ToLower())).FirstOrDefault();
-
-                    if (result != null)
+                    if (lstItemSold.Count > 0)
                     {
-                        result.Qty++;
-                        result.Tax = result.Tax + result.Tax;
-                        result.Total = result.Qty * result.Rate;
-                        result.DiscAmount = result.DiscAmount + result.DiscAmount;
-                        lstItemSold.Remove(result);
-                        lstItemSold.Add(result);
-                        AppendDatasourceToGrid(lstItemSold);
-                        await CalculateTotal();
-                        ClearAllControls();
+                        if (lstItemSold.Where(c => c.ItemName.ToLower() == ItemName.ToLower()).Count() > 0)
+                        {
+                            txtBarcode.Text = "";
+                            return;
+                        }
+                    }
+                    if (ItemName.Trim().Length == 8)
+                    {
+                        var result = dsAllItemDetails.Tables[0].AsEnumerable()
+                            .Where(c => c.Field<string>("ItemName").ToLower()
+                            .Contains(ItemName.ToLower())).FirstOrDefault();
+
+                        if (result != null)
+                        {
+                            StoreInSoldItemList(result);
+                            ClearAllControls();
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else if (ItemName.Trim().Length > 8)
+                    {
+                        var result = dsAllItemDetails.Tables[0].AsEnumerable()
+                            .Where(c => c.Field<string>("ItemName").ToLower() == (ItemName.ToLower())).FirstOrDefault();
+
+                        if (result != null)
+                        {
+                            StoreInSoldItemList(result);
+                            ClearAllControls();
+                        }
                     }
                     else { }
-                }
-                else
-                {
-                    if (ItemName.Trim().Length > 7)
-                    {
-                        if (lstItemSold.Count > 0)
-                        {
-                            if (lstItemSold.Where(c => c.ItemName.ToLower() == ItemName.ToLower()).Count() > 0)
-                            {
-                                txtBarcode.Text = "";
-                                return;
-                            }
-                        }
-                        if (ItemName.Trim().Length == 8)
-                        {
-                            var result = dsAllItemDetails.Tables[0].AsEnumerable()
-                                .Where(c => c.Field<string>("ItemName").ToLower()
-                                .Contains(ItemName.ToLower())).FirstOrDefault();
-
-                            if (result != null)
-                            {
-                                StoreInSoldItemList(result);
-                                ClearAllControls();
-                            }
-                            else
-                            {
-
-                            }
-                        }
-                        else if (ItemName.Trim().Length > 8)
-                        {
-                            var result = dsAllItemDetails.Tables[0].AsEnumerable()
-                                .Where(c => c.Field<string>("ItemName").ToLower() == (ItemName.ToLower())).FirstOrDefault();
-
-                            if (result != null)
-                            {
-                                StoreInSoldItemList(result);
-                                ClearAllControls();
-                            }
-                        }
-                        else { }
-
-                    }
 
                 }
             }
-
-            //gdvItemDetails.AutoGenerateColumns = false;
-            //gdvItemDetails.DataSource = null;
-            //gdvItemDetails.DataSource = lstItemSold.Count > 0 ? lstItemSold.OrderByDescending(c => c.Counter).ToList() : null;
-            //gdvItemDetails.Refresh();
-            //gdvBillTaxDetails.DataSource = lstItemTax.ToList();
-            //gdvBillTaxDetails.Refresh();
-            //lblItemCount.Text = lstItemSold.Count.ToString(); ClearAllControls();
         }
-
-        //private async void StoreInSoldItemList(List<ItemMasterEntity> result)
-        //{
-        //    decimal _tax = 0;
-        //    _tax = CalculateTax(result);
-
-        //    lstItemSold.Add(new SoldItemsEntity()
-        //    {
-        //        Counter = lstItemSold.Count + 1,
-        //        BillID = MaxBillId,
-        //        ItemName = (result.ItemArray[1].ToString()),
-        //        BarcodeID = result.ItemArray[2].ToString(),
-        //        Date = TodayDate,
-        //        DiscAmount = Convert.ToDecimal(result.ItemArray[11].ToString()),
-        //        DiscPer = Convert.ToDecimal(result.ItemArray[6].ToString()),
-        //        ItemID = Convert.ToInt64(result.ItemArray[0].ToString()),
-        //        Qty = Convert.ToDecimal(result.ItemArray[7].ToString()),
-        //        Rate = Convert.ToDecimal(result.ItemArray[3].ToString()),
-        //        Tax= _tax,
-        //        Total = Convert.ToDecimal(result.ItemArray[12]),
-        //        UnitID = Convert.ToInt32(result.ItemArray[9].ToString()),
-        //        Weight= result.ItemArray[10].ToString(),
-        //        BuyPrice= Convert.ToDecimal(result.ItemArray[13]),
-        //    });
-        //    await CalculateTotal(Convert.ToDecimal(result.ItemArray[12].ToString()), Convert.ToDecimal(result.ItemArray[11]));
-
-        //    gdvItemDetails.AutoGenerateColumns = false;
-        //    gdvItemDetails.DataSource = null;
-        //    gdvItemDetails.DataSource = lstItemSold.Count > 0 ? lstItemSold.OrderByDescending(c => c.Counter).ToList() : null;
-        //    gdvItemDetails.Refresh();
-        //    gdvBillTaxDetails.DataSource = lstItemTax.ToList();
-        //    gdvBillTaxDetails.Refresh();
-        //    lblItemCount.Text = lstItemSold.Count.ToString(); ClearAllControls();
-        //}
 
 
         private async void StoreInSoldItemList(DataRow result)
         {
-            decimal _tax = 0;
-            _tax = CalculateTax(result);
+            var ExistingObj = lstItemSold.Where(c => c.ItemName.ToLower() == result.ItemArray[1].ToString().ToLower()).FirstOrDefault();
 
-            lstItemSold.Add(new SoldItemsEntity()
+            if (ExistingObj != null)
             {
-                Counter = lstItemSold.Count + 1,
-                BillID = MaxBillId,
-                ItemName = (result.ItemArray[1].ToString()),
-                BarcodeID = result.ItemArray[2].ToString(),
-                Date = TodayDate,
-                DiscAmount = Convert.ToDecimal(result.ItemArray[9].ToString()),
-                DiscPer = Convert.ToDecimal(result.ItemArray[8].ToString()),
-                ItemID = Convert.ToInt64(result.ItemArray[0].ToString()),
-                Qty = Convert.ToDecimal(result.ItemArray[10].ToString()),
-                Rate = Convert.ToDecimal(result.ItemArray[7].ToString()),
-                Tax = Convert.ToDecimal(result.ItemArray[11].ToString()),
-                Total = Convert.ToDecimal(result.ItemArray[12]),
-                UnitID = Convert.ToInt32(result.ItemArray[4].ToString()),
-                Weight = result.ItemArray[5].ToString(),
-                BuyPrice = Convert.ToDecimal(result.ItemArray[13]),
-            });
+                var objresult = dsAllItemDetails.Tables[0].AsEnumerable()
+                               .Where(c => c.Field<string>("ItemName").ToLower()
+                               == result.ItemArray[1].ToString().ToLower()).FirstOrDefault();
+                if (objresult != null)
+                {
+                    lstItemSold.Remove(ExistingObj);
+                    ExistingObj.Qty += Convert.ToDecimal(objresult.ItemArray[10].ToString());
+                    ExistingObj.Tax += Convert.ToDecimal(objresult.ItemArray[11].ToString());
+                    ExistingObj.Total += Convert.ToDecimal(objresult.ItemArray[12]);
+                    ExistingObj.DiscAmount += Convert.ToDecimal(objresult.ItemArray[9].ToString());
+                }
+                else { }
+
+                lstItemSold.Add(ExistingObj);
+
+            }
+            else
+            {
+                lstItemSold.Add(new SoldItemsEntity()
+                {
+                    Counter = lstItemSold.Count + 1,
+                    BillID = MaxBillId,
+                    ItemName = (result.ItemArray[1].ToString()),
+                    BarcodeID = result.ItemArray[2].ToString(),
+                    Date = TodayDate,
+                    DiscAmount = Convert.ToDecimal(result.ItemArray[9].ToString()),
+                    DiscPer = Convert.ToDecimal(result.ItemArray[8].ToString()),
+                    ItemID = Convert.ToInt64(result.ItemArray[0].ToString()),
+                    Qty = Convert.ToDecimal(result.ItemArray[10].ToString()),
+                    Rate = Convert.ToDecimal(result.ItemArray[7].ToString()),
+                    Tax = Convert.ToDecimal(result.ItemArray[11].ToString()),
+                    Total = Convert.ToDecimal(result.ItemArray[12]),
+                    UnitID = Convert.ToInt32(result.ItemArray[4].ToString()),
+                    Weight = result.ItemArray[5].ToString(),
+                    BuyPrice = Convert.ToDecimal(result.ItemArray[13]),
+                });
+            }
+             CalculateTax(result);
             await CalculateTotal();
-
             AppendDatasourceToGrid(lstItemSold);
-
         }
 
         private void AppendDatasourceToGrid(List<SoldItemsEntity> lstItemSold)
@@ -631,6 +582,7 @@ namespace StockX.Transaction
             {
                 CustomerID = Convert.ToInt64(txtCustomerID.Text),
                 Outstanding = Convert.ToDecimal(lblPending.Text),
+                BillDate=TodayDate,
                 BillID = (MaxBillId)
             });
 
@@ -714,7 +666,8 @@ namespace StockX.Transaction
                     Date= TodayDate,
                     DiscPer = Convert.ToDecimal(item.DiscPer),
                     DiscAmount = Convert.ToDecimal(item.DiscAmount),
-                    Total = Convert.ToDecimal(((item.Qty * item.Rate) - item.DiscAmount)),                    
+                    TaxAmount=Convert.ToDecimal(item.Tax),
+                    Total = Convert.ToDecimal(item.Total),                    
                 });
             }
             return lstBillItems;
@@ -1055,6 +1008,11 @@ namespace StockX.Transaction
         {
             frmBillDetails frmBillDetails = new frmBillDetails();            
             await frmBillDetails.PrintBill(MaxBillId.ToString());
+        }
+
+        private void txtAddress_Enter(object sender, EventArgs e)
+        {
+            txtAddress.BackColor = CommonUtility.SetTextBackgroundColor(txtAddress);
         }
     }
 }

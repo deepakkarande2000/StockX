@@ -21,7 +21,7 @@ namespace StockX.Utility
         public frmMessageBox()
         {
             InitializeComponent();
-            this.Opacity = 0.96d;
+            this.Opacity = 0.90d;
             this.WindowState = FormWindowState.Maximized;        
         }
 

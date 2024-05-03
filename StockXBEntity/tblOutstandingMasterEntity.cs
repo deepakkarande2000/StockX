@@ -16,6 +16,7 @@ namespace StockXBEntity
         public Int64 CustomerID { get; set; }
         [Key]
         public Int64 BillID { get; set; }
+        public string BillDate { get; set; }
         public decimal Outstanding { get; set; }
     }
 }

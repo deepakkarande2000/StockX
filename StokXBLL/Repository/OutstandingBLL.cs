@@ -58,9 +58,9 @@ namespace StokXBLL.Repository
             else { return false; } 
         }
 
-        public async Task InsertUpdatePendingAmount(long BillID, long CustomerID, decimal Amount)
+        public async Task InsertUpdatePendingAmount(long BillID, long CustomerID, decimal Amount,string Date)
         {
-            _sqlDbHelper.FunExecuteNonQuery("[InsertUpdateOutStanding]", CustomerID, BillID,  Amount);
+            _sqlDbHelper.FunExecuteNonQuery("[InsertUpdateOutStanding]", CustomerID, BillID, Amount, Date);
         }
     }
 }

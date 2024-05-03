@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="ApplicationSettingsEntity.cs" />
     <Compile Include="BillingEntity.cs" />
+    <Compile Include="DailyExpenseEntity.cs" />
     <Compile Include="DBModel\tblBilling.cs" />
+    <Compile Include="ExpenseTitleMasterEntity.cs" />
     <Compile Include="ItemTaxDetailModel.cs" />
     <Compile Include="SoldItemsEntity.cs" />
     <Compile Include="BillItemsEntity.cs" />

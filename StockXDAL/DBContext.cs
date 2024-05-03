@@ -41,6 +41,7 @@ namespace StokcXDAL
         public DbSet<tblOutstandingMasterEntity> tblOutstandingMaster { get; set; }
         public DbSet<tblOutstandingTxnEntity> tblOutstandingTransaction { get; set; }
         public DbSet<StockTxnHistoryEntity> tblStockTxnHistory { get; set; }
+        public DbSet<ExpenseTitleMasterEntity> tblExpenseTitleMaster { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -60,6 +61,7 @@ namespace StokcXDAL
             modelBuilder.Entity<tblOutstandingMasterEntity>().HasKey(x => x.ID);
             modelBuilder.Entity<tblOutstandingTxnEntity>().HasKey(x => x.ID);
             modelBuilder.Entity<tblOutstandingTxnEntity>().HasKey(x => x.ID);
+            modelBuilder.Entity<ExpenseTitleMasterEntity>().HasKey(x => x.ExpenseID);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             base.OnModelCreating(modelBuilder);            
         }

@@ -33,6 +33,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDashboard));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pnlMenuBar = new System.Windows.Forms.Panel();
@@ -65,7 +68,6 @@
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.smnuPaymentModes = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.smnuExpenseCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAccounting = new System.Windows.Forms.ToolStripMenuItem();
             this.smnuDailyExpenses = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
@@ -113,11 +115,17 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.pnlHeaderMarquee = new System.Windows.Forms.Panel();
             this.lblMarquee = new System.Windows.Forms.Label();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.smnuExpenseCategory = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.chtSales = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlMenuBar.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.pnlShortcuts.SuspendLayout();
             this.pnlSummaryDetails.SuspendLayout();
             this.pnlCard4.SuspendLayout();
+            this.pnlDetails2.SuspendLayout();
             this.pnlDetails1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gdvStockDetails)).BeginInit();
             this.pnlCard3.SuspendLayout();
@@ -125,6 +133,7 @@
             this.pnlCard1.SuspendLayout();
             this.pnlBanner.SuspendLayout();
             this.pnlHeaderMarquee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chtSales)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -166,8 +175,8 @@
             this.mnuDashboard,
             this.mnuMaster,
             this.mnuAccounting,
-            this.mnuReports,
             this.mnuUtility,
+            this.mnuReports,
             this.mnuSettings,
             this.mnuRefresh});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
@@ -252,8 +261,12 @@
             this.smnuItemCategoryMaster.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.smnuItemCategoryMaster.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.smnuItemCategory,
+            this.toolStripSeparator15,
             this.smnuUserCategory,
-            this.smnuTaxCategory});
+            this.toolStripSeparator16,
+            this.smnuTaxCategory,
+            this.toolStripSeparator14,
+            this.smnuExpenseCategory});
             this.smnuItemCategoryMaster.Name = "smnuItemCategoryMaster";
             this.smnuItemCategoryMaster.Size = new System.Drawing.Size(185, 24);
             this.smnuItemCategoryMaster.Text = "Category";
@@ -261,22 +274,28 @@
             // 
             // smnuItemCategory
             // 
+            this.smnuItemCategory.BackgroundImage = global::StockX.Properties.Resources.marqueebg1;
+            this.smnuItemCategory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.smnuItemCategory.Name = "smnuItemCategory";
-            this.smnuItemCategory.Size = new System.Drawing.Size(188, 24);
+            this.smnuItemCategory.Size = new System.Drawing.Size(214, 24);
             this.smnuItemCategory.Text = "Item Category";
             this.smnuItemCategory.Click += new System.EventHandler(this.smnuItemCategory_Click);
             // 
             // smnuUserCategory
             // 
+            this.smnuUserCategory.BackgroundImage = global::StockX.Properties.Resources.marqueebg1;
+            this.smnuUserCategory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.smnuUserCategory.Name = "smnuUserCategory";
-            this.smnuUserCategory.Size = new System.Drawing.Size(188, 24);
+            this.smnuUserCategory.Size = new System.Drawing.Size(214, 24);
             this.smnuUserCategory.Text = "User Category";
             this.smnuUserCategory.Click += new System.EventHandler(this.smnuUserCategory_Click);
             // 
             // smnuTaxCategory
             // 
+            this.smnuTaxCategory.BackgroundImage = global::StockX.Properties.Resources.marqueebg1;
+            this.smnuTaxCategory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.smnuTaxCategory.Name = "smnuTaxCategory";
-            this.smnuTaxCategory.Size = new System.Drawing.Size(188, 24);
+            this.smnuTaxCategory.Size = new System.Drawing.Size(214, 24);
             this.smnuTaxCategory.Text = "Tax Category";
             this.smnuTaxCategory.Click += new System.EventHandler(this.smnuTaxCategory_Click);
             // 
@@ -303,8 +322,7 @@
             this.smnuStockMaster,
             this.toolStripSeparator9,
             this.smnuPaymentModes,
-            this.toolStripSeparator11,
-            this.smnuExpenseCategory});
+            this.toolStripSeparator11});
             this.smnuMaster.Name = "smnuMaster";
             this.smnuMaster.Size = new System.Drawing.Size(185, 24);
             this.smnuMaster.Text = "Master ";
@@ -312,6 +330,8 @@
             // 
             // smnuItemMaster
             // 
+            this.smnuItemMaster.BackgroundImage = global::StockX.Properties.Resources.marqueebg1;
+            this.smnuItemMaster.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.smnuItemMaster.Name = "smnuItemMaster";
             this.smnuItemMaster.Size = new System.Drawing.Size(233, 24);
             this.smnuItemMaster.Text = "Item Master";
@@ -324,6 +344,8 @@
             // 
             // smnuUnitMaster
             // 
+            this.smnuUnitMaster.BackgroundImage = global::StockX.Properties.Resources.marqueebg1;
+            this.smnuUnitMaster.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.smnuUnitMaster.Name = "smnuUnitMaster";
             this.smnuUnitMaster.Size = new System.Drawing.Size(233, 24);
             this.smnuUnitMaster.Text = "Unit Master";
@@ -336,6 +358,8 @@
             // 
             // smnuUserMaster
             // 
+            this.smnuUserMaster.BackgroundImage = global::StockX.Properties.Resources.marqueebg1;
+            this.smnuUserMaster.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.smnuUserMaster.Name = "smnuUserMaster";
             this.smnuUserMaster.Size = new System.Drawing.Size(233, 24);
             this.smnuUserMaster.Text = "User Master";
@@ -348,6 +372,8 @@
             // 
             // smnuCustomerMaster
             // 
+            this.smnuCustomerMaster.BackgroundImage = global::StockX.Properties.Resources.marqueebg1;
+            this.smnuCustomerMaster.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.smnuCustomerMaster.Name = "smnuCustomerMaster";
             this.smnuCustomerMaster.Size = new System.Drawing.Size(233, 24);
             this.smnuCustomerMaster.Text = "Customer Master F3";
@@ -360,6 +386,8 @@
             // 
             // smnuSupplierMaster
             // 
+            this.smnuSupplierMaster.BackgroundImage = global::StockX.Properties.Resources.marqueebg1;
+            this.smnuSupplierMaster.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.smnuSupplierMaster.Name = "smnuSupplierMaster";
             this.smnuSupplierMaster.Size = new System.Drawing.Size(233, 24);
             this.smnuSupplierMaster.Text = "Supplier Master";
@@ -372,6 +400,8 @@
             // 
             // smnuStockMaster
             // 
+            this.smnuStockMaster.BackgroundImage = global::StockX.Properties.Resources.marqueebg1;
+            this.smnuStockMaster.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.smnuStockMaster.Name = "smnuStockMaster";
             this.smnuStockMaster.Size = new System.Drawing.Size(233, 24);
             this.smnuStockMaster.Text = "Stock Master F4";
@@ -384,6 +414,8 @@
             // 
             // smnuPaymentModes
             // 
+            this.smnuPaymentModes.BackgroundImage = global::StockX.Properties.Resources.marqueebg1;
+            this.smnuPaymentModes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.smnuPaymentModes.Name = "smnuPaymentModes";
             this.smnuPaymentModes.Size = new System.Drawing.Size(233, 24);
             this.smnuPaymentModes.Text = "Payment Modes";
@@ -393,12 +425,6 @@
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
             this.toolStripSeparator11.Size = new System.Drawing.Size(230, 6);
-            // 
-            // smnuExpenseCategory
-            // 
-            this.smnuExpenseCategory.Name = "smnuExpenseCategory";
-            this.smnuExpenseCategory.Size = new System.Drawing.Size(233, 24);
-            this.smnuExpenseCategory.Text = "Expense Category";
             // 
             // mnuAccounting
             // 
@@ -423,6 +449,7 @@
             this.smnuDailyExpenses.Name = "smnuDailyExpenses";
             this.smnuDailyExpenses.Size = new System.Drawing.Size(191, 24);
             this.smnuDailyExpenses.Text = "Daily Expenses";
+            this.smnuDailyExpenses.Click += new System.EventHandler(this.smnuDailyExpenses_Click);
             // 
             // toolStripSeparator10
             // 
@@ -629,6 +656,7 @@
             this.pnlDetails2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(54)))), ((int)(((byte)(70)))));
             this.pnlDetails2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlDetails2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDetails2.Controls.Add(this.chtSales);
             this.pnlDetails2.Location = new System.Drawing.Point(461, 149);
             this.pnlDetails2.Name = "pnlDetails2";
             this.pnlDetails2.Size = new System.Drawing.Size(454, 250);
@@ -641,7 +669,7 @@
             this.pnlDetails1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlDetails1.Controls.Add(this.label4);
             this.pnlDetails1.Controls.Add(this.gdvStockDetails);
-            this.pnlDetails1.Font = new System.Drawing.Font("DaytonaPro-Semibold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlDetails1.Font = new System.Drawing.Font("DaytonaPro-Light", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlDetails1.Location = new System.Drawing.Point(9, 149);
             this.pnlDetails1.Name = "pnlDetails1";
             this.pnlDetails1.Size = new System.Drawing.Size(454, 250);
@@ -945,6 +973,47 @@
             this.lblMarquee.TabIndex = 0;
             this.lblMarquee.Text = "label3";
             // 
+            // toolStripSeparator14
+            // 
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            this.toolStripSeparator14.Size = new System.Drawing.Size(211, 6);
+            // 
+            // smnuExpenseCategory
+            // 
+            this.smnuExpenseCategory.BackgroundImage = global::StockX.Properties.Resources.marqueebg1;
+            this.smnuExpenseCategory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.smnuExpenseCategory.Name = "smnuExpenseCategory";
+            this.smnuExpenseCategory.Size = new System.Drawing.Size(214, 24);
+            this.smnuExpenseCategory.Text = "Expense Category";
+            // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            this.toolStripSeparator15.Size = new System.Drawing.Size(211, 6);
+            // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            this.toolStripSeparator16.Size = new System.Drawing.Size(211, 6);
+            // 
+            // chtSales
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chtSales.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chtSales.Legends.Add(legend1);
+            this.chtSales.Location = new System.Drawing.Point(21, 8);
+            this.chtSales.Name = "chtSales";
+            this.chtSales.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            series1.ChartArea = "ChartArea1";
+            series1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series1.Legend = "Legend1";
+            series1.Name = "Date";
+            this.chtSales.Series.Add(series1);
+            this.chtSales.Size = new System.Drawing.Size(415, 227);
+            this.chtSales.TabIndex = 0;
+            this.chtSales.Text = "Daily Sales";
+            // 
             // FrmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -976,6 +1045,7 @@
             this.pnlSummaryDetails.ResumeLayout(false);
             this.pnlCard4.ResumeLayout(false);
             this.pnlCard4.PerformLayout();
+            this.pnlDetails2.ResumeLayout(false);
             this.pnlDetails1.ResumeLayout(false);
             this.pnlDetails1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gdvStockDetails)).EndInit();
@@ -989,6 +1059,7 @@
             this.pnlBanner.PerformLayout();
             this.pnlHeaderMarquee.ResumeLayout(false);
             this.pnlHeaderMarquee.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chtSales)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1069,11 +1140,15 @@
         private System.Windows.Forms.ToolStripMenuItem smnuDailyExpenses;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
-        private System.Windows.Forms.ToolStripMenuItem smnuExpenseCategory;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem smnuPendingDetails;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private System.Windows.Forms.ToolStripMenuItem smnuExpenseCategory;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtSales;
     }
 }
 

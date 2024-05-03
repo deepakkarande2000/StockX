@@ -131,7 +131,9 @@ namespace StockX.Utility
             else
             {
 
-                await outstandingBLL.InsertUpdatePendingAmount(Convert.ToInt64(lblBillNo.Text), Convert.ToInt64(txtCustomerID.Text), Convert.ToDecimal(txtPayingAmt.Text));
+                await outstandingBLL.InsertUpdatePendingAmount(Convert.ToInt64(lblBillNo.Text),
+                    Convert.ToInt64(txtCustomerID.Text), Convert.ToDecimal(txtPayingAmt.Text),
+                    dtpBillDate.Value.Date.ToString("yyyyMMdd"));
 
             }
 
@@ -154,11 +156,15 @@ namespace StockX.Utility
             {
                 if (gdvPendingDetails.CurrentRow.Cells["Name"].Value.ToString() != "")
                 {
+                    DateTime billDate =DateTime.Now;
+
                     lblBillNo.Text = gdvPendingDetails.CurrentRow.Cells["BillID"].Value.ToString();
                     txtCustomerID.Text = gdvPendingDetails.CurrentRow.Cells["CustomerID"].Value.ToString();
                     txtCustomerName.Text = gdvPendingDetails.CurrentRow.Cells["Name"].Value.ToString();
                     txtContact.Text = gdvPendingDetails.CurrentRow.Cells["MobileNo"].Value.ToString();
                     lblPendingAmt.Text = gdvPendingDetails.CurrentRow.Cells["TotalPending"].Value.ToString();
+                    DateTime.TryParse(gdvPendingDetails.CurrentRow.Cells["BillDate"].Value.ToString(),out billDate);
+                    dtpBillDate.Value = Convert.ToDateTime(billDate);
                 }
                 else
                 {

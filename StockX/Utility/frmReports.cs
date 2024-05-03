@@ -26,13 +26,15 @@ namespace StockX.Utility
         BillingBLL billingBLL = new BillingBLL();
         CustomerMasterBLL customerMasterBLL = new CustomerMasterBLL();
         StockTxnHistoryBLL stockTxnHistoryBLL = new StockTxnHistoryBLL();
+        DailyExpenseBLL dailyExpenseBLL = new DailyExpenseBLL();
         ReportDocument rptdoc = new ReportDocument();
 
         string ReportPath = System.IO.Directory.GetCurrentDirectory() + "\\Reports\\";
         public string ReportName = "";
         public string BillNo = "";
-        public bool PrintReport = false;
-        public string SelectedPrinterName = "Microsoft XPS Document Writer";//"HP DJ 3830 series"
+        public Int64 ExpenseID = 0;
+        public bool bPrintReport = true;
+        public string SelectedPrinterName = "HP DJ 3830 series";//"Microsoft XPS Document Writer";
         frmMessageBox frmMessageBox;
 
         private string strUserID = "";
@@ -65,7 +67,7 @@ namespace StockX.Utility
             if (cboReportName.Text.Trim() != "")
             {
                 ReportName = cboReportName.Text;
-                if (cboReportName.Text == "Bill")
+                if (cboReportName.Text == "Bill" || cboReportName.Text == "Bill A6")
                 {
                     if (txtBillNo.Text.Trim() != "")
                     {
@@ -76,6 +78,19 @@ namespace StockX.Utility
                         ShowMessage("Please Provide Bill Number to print Bill", "Ok");
                         return;
                     }
+                }
+                else if (cboReportName.Text.Trim() == "Voucher")
+                {
+                    if (txtBillNo.Text.Trim() != "")
+                    {
+                        ExpenseID = Convert.ToInt64(txtBillNo.Text.Trim());
+                    }
+                    else
+                    {
+                        ShowMessage("Please Provide Voucher Number to Print", "Ok");
+                        return;
+                    }
+                    
                 }
                 else { }
 
@@ -99,10 +114,12 @@ namespace StockX.Utility
 
         public async Task GenerateReport()
         {
-           
+           if(strServerName=="")
+            { GetDatabaseName(); }
             ReportPath = "D:\\Work\\StockX\\StockX\\Reports\\";
             crystalReportViewer1.Refresh();
             ParameterFields BillIDField = new ParameterFields();
+            ParameterFields ExpenseIDField = new ParameterFields();
             ParameterFields FromDateField = new ParameterFields();
             ParameterFields ToDateField = new ParameterFields();
             rptdoc = new ReportDocument();
@@ -110,10 +127,10 @@ namespace StockX.Utility
 
             switch (ReportName)
             {
-                case "Bill":
-                    rptdoc.Load(ReportPath + "rptBill.rpt");
-                     rptdoc.SetDatabaseLogon(strUserID, strPassword, strServerName, strDatabaseName);
-                    
+                case "Bill A6":
+                    rptdoc.Load(ReportPath + "rptBillA6.rpt");
+                    rptdoc.SetDatabaseLogon(strUserID, strPassword, strServerName, strDatabaseName);
+
                     DataSet dsBillDetails = new DataSet();
                     dsBillDetails = await billingBLL.GetBillDetails(BillNo);
 
@@ -129,9 +146,41 @@ namespace StockX.Utility
                         paramBillID.CurrentValues.Add(discreteValue);
 
                         BillIDField.Add(paramBillID);
+                        //rptdoc.Subreports["rptBillTaxDetails"].SetDataSource(dsBillTaxDetails.Tables[0]);
+                        //rptdoc.Subreports["rptBillTaxDetails"].SetParameterValue("@BillID", BillNo);
+                        //rptdoc.SetDataSource(dsBillDetails.Tables[0]);
+                        // GetDatabaseCredential(rptdoc);
+                        //rptdoc.ReportDefinition.Sections["Section3"].Height += 100;
+                        crystalReportViewer1.ReportSource = rptdoc;
+                        crystalReportViewer1.ParameterFieldInfo = BillIDField;
+                    }
+                    else
+                    {
+                        ShowMessage("Bill Details Are Not Found Please Check Bill Number", "Ok");
+                        return;
+                    }
+
+                    break;
+                case "Bill":
+                    rptdoc.Load(ReportPath + "rptBill.rpt");
+                     rptdoc.SetDatabaseLogon(strUserID, strPassword, strServerName, strDatabaseName);
+                    
+                    DataSet dsNewBillDetails = new DataSet();
+                    dsNewBillDetails = await billingBLL.GetBillDetails(BillNo);
+
+                    if (dsNewBillDetails != null && dsNewBillDetails.Tables.Count > 0 && dsNewBillDetails.Tables[0].Rows.Count > 0)
+                    {
+                        DataSet dsBillTaxDetails = new DataSet();
+                        dsBillTaxDetails = await billingBLL.GetBillTax(BillNo);
+                        ParameterField paramBillID = new ParameterField();
+                        paramBillID.Name = "@BillID";
+                        ParameterDiscreteValue discreteValue = new ParameterDiscreteValue();
+                        discreteValue.Value = BillNo;
+                        paramBillID.CurrentValues.Add(discreteValue);
+                        BillIDField.Add(paramBillID);
                         rptdoc.Subreports["rptBillTaxDetails"].SetDataSource(dsBillTaxDetails.Tables[0]);
                         //rptdoc.Subreports["rptBillTaxDetails"].SetParameterValue("@BillID", BillNo);
-                        rptdoc.SetDataSource(dsBillDetails.Tables[0]);
+                        rptdoc.SetDataSource(dsNewBillDetails.Tables[0]);
                         // GetDatabaseCredential(rptdoc);
                         crystalReportViewer1.ReportSource = rptdoc;
                         crystalReportViewer1.ParameterFieldInfo = BillIDField;
@@ -163,6 +212,32 @@ namespace StockX.Utility
                 case "Balance Sheet Report":
                     rptdoc.Load(ReportPath + "rptBalanceSheetReport.rpt");
                     GetDatabaseCredential(rptdoc);
+                    crystalReportViewer1.ReportSource = rptdoc;
+                    break;
+
+                case "Voucher":
+                    rptdoc.Load(ReportPath + "rptVoucherDetails.rpt");
+                    GetDatabaseCredential(rptdoc);
+                    DataSet dsExpenseDetail = new DataSet();
+                    dsExpenseDetail = await dailyExpenseBLL.GetDailyExpensesByID(ExpenseID);
+
+                    if (dsExpenseDetail != null && dsExpenseDetail.Tables.Count > 0 && dsExpenseDetail.Tables[0].Rows.Count > 0)
+                    {                       
+                        ParameterField paramID = new ParameterField();
+                        paramID.Name = "@ID";
+                        ParameterDiscreteValue discreteValue = new ParameterDiscreteValue();
+                        discreteValue.Value = ExpenseID;
+                        paramID.CurrentValues.Add(discreteValue);
+                        ExpenseIDField.Add(paramID);                       
+                        rptdoc.SetDataSource(dsExpenseDetail.Tables[0]);
+                        crystalReportViewer1.ReportSource = rptdoc;
+                        crystalReportViewer1.ParameterFieldInfo = ExpenseIDField;
+                    }
+                    else
+                    {
+                        ShowMessage("Voucher Details Are Not Found Please Check Voucher Number", "Ok");
+                        return;
+                    }
                     crystalReportViewer1.ReportSource = rptdoc;
                     break;
 
@@ -212,32 +287,14 @@ namespace StockX.Utility
 
             try
             {
-                if (!PrintReport)
+                if (!bPrintReport)
                 {
                     crystalReportViewer1.Show();
                     crystalReportViewer1.Refresh();
                 }
                 else
                 {
-                    //System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
-                    //printerSettings.PrinterName = SelectedPrinterName;
-
-                    //System.Drawing.Printing.PageSettings page = new System.Drawing.Printing.PageSettings();                    
-                    //page.Landscape = false;
-                    //page.PaperSize = PaperSize.PaperA4Small;
-
-                    //if (ReportName == "Bill")
-                    //{                       
-                    //    rptdoc.FileName = "BillNo-" + BillNo;
-                    //}
-                    //else
-                    //{                        
-                    //    rptdoc.FileName = ReportName;
-                    //}
-                    rptdoc.PrintOptions.PrinterName = SelectedPrinterName;                    
-                    rptdoc.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.PaperA5;
-                    rptdoc.PrintOptions.PaperOrientation = CrystalDecisions.Shared.PaperOrientation.Portrait;                   
-                    rptdoc.PrintToPrinter(1,false,0,0);
+                    PrintReport();                    
                 }
             }
             catch (Exception ex)
@@ -345,6 +402,10 @@ namespace StockX.Utility
         {
             dtpFromDate.MaxDate = DateTime.UtcNow.Date;
             dtpToDate.MaxDate = DateTime.UtcNow.Date;
+            dtpFromDate.Visible = false;
+            dtpToDate.Visible = false;
+            lblParamName.Visible = false;
+            txtBillNo.Visible = false;
         }
 
         private void FillReportName()
@@ -354,7 +415,9 @@ namespace StockX.Utility
             cboReportName.Items.Add("Balance Sheet Report");
             cboReportName.Items.Add("Barcode Printing");
             cboReportName.Items.Add("Bill");
+            cboReportName.Items.Add("Bill A6");            
             cboReportName.Items.Add("Pending Report");
+            cboReportName.Items.Add("Voucher");
             cboReportName.Items.Add("Stock Stmt For Banks");            
         }
 
@@ -371,18 +434,66 @@ namespace StockX.Utility
             {
                 if (SelectedPrinterName == "")
                 {
-                    PrintDialog printDialog = new PrintDialog();                    
+                    PrintDialog printDialog = new PrintDialog();
                     printDialog.ShowDialog();
                     SelectedPrinterName = printDialog.PrinterSettings.PrinterName;
-                    rptdoc.PrintOptions.PrinterName = SelectedPrinterName;
-                    rptdoc.PrintToPrinter(1, false, 0, 0);
+                    
                 }
-                else { }
+                else { 
+                }
+                PrintReport();
             }
             else
             {
                 ShowMessage("Please select Report to print", "OK");
                 return;
+            }
+        }
+
+        private void PrintReport()
+        {
+            try
+            {
+                rptdoc.PrintOptions.PrinterName = SelectedPrinterName;
+
+                if (ReportName == "Bill A6")
+                {
+                    System.Drawing.Printing.PrinterSettings printerSettings = new System.Drawing.Printing.PrinterSettings();
+                    printerSettings.PrinterName = SelectedPrinterName;
+
+                    System.Drawing.Printing.PageSettings page = new System.Drawing.Printing.PageSettings();
+                    page.Landscape = false;
+                    page.PaperSize = new System.Drawing.Printing.PaperSize("custom", 275, 3000);
+                    rptdoc.PrintToPrinter(printerSettings, page, false);
+                }
+                else
+                {
+                    rptdoc.PrintToPrinter(1, false, 0, 0);
+                }
+            }
+            catch (Exception ex)
+            {
+                StockXExceptionLogger.ExceptionLogger.WriteExceptionLog(ex);
+            }
+        }
+
+        private void cboReportName_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if(cboReportName.Text.Trim()=="Bill" || cboReportName.Text=="Bill A6")
+            {
+                lblParamName.Visible = true;
+                txtBillNo.Visible = true;
+                lblParamName.Text = "Bill Number";
+            }
+            else if (cboReportName.Text.Trim() == "Voucher")
+            {
+                txtBillNo.Visible = true;
+                lblParamName.Visible = true;
+                lblParamName.Text = "Voucher No.";
+            }else
+            {
+                txtBillNo.Visible = false;
+                lblParamName.Visible = false;
             }
         }
     }

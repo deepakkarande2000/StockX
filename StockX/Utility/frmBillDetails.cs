@@ -43,6 +43,13 @@ namespace StockX.Utility
             {
                 Close();
             }
+            if (e.KeyCode == Keys.Down)
+            {
+                if(gdvBillDetails.Rows.Count > 0)
+                {
+                    gdvBillDetails.Rows[0].Selected = true;
+                }
+            }
             
         }
 
@@ -54,6 +61,7 @@ namespace StockX.Utility
             gdvBillDetails.SelectionChanged -= gdvBillDetails_SelectionChanged;
             LoadBillDetails(DateTime.UtcNow.ToString("yyyyMMdd"));
             SetDefaultValues();
+            gdvBillDetails.Focus();
         }
 
         private void SetDefaultValues()
@@ -185,8 +193,8 @@ namespace StockX.Utility
             {                
                 frmReports frmReports = new frmReports();
                 frmReports.BillNo = BillId;
-                frmReports.PrintReport = true;
-                frmReports.ReportName = "Bill";
+                frmReports.bPrintReport = true;
+                frmReports.ReportName = "Bill A6";
                 await frmReports.GenerateReport();
             }
             catch (Exception ex)

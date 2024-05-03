@@ -65,6 +65,7 @@
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Repository\BillingBLL.cs" />
     <Compile Include="Repository\CustomerMasterBLL.cs" />
+    <Compile Include="Repository\DailyExpenseBLL.cs" />
     <Compile Include="Repository\ItemCategoryBLL.cs" />
     <Compile Include="Repository\ItemMasterBLL.cs" />
     <Compile Include="Repository\LoginBLL.cs" />

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtMobileNo = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.lblCategory = new System.Windows.Forms.LinkLabel();
             this.chkUserActive = new System.Windows.Forms.CheckBox();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
@@ -51,8 +53,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.txtMobileNo = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gdvAllTaxCategories)).BeginInit();
@@ -80,6 +80,25 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(506, 221);
             this.panel3.TabIndex = 20;
+            // 
+            // txtMobileNo
+            // 
+            this.txtMobileNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMobileNo.Font = new System.Drawing.Font("DaytonaPro-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMobileNo.Location = new System.Drawing.Point(226, 172);
+            this.txtMobileNo.Name = "txtMobileNo";
+            this.txtMobileNo.Size = new System.Drawing.Size(250, 28);
+            this.txtMobileNo.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("DaytonaPro-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(14, 176);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 20);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Mobile No *";
             // 
             // lblCategory
             // 
@@ -148,7 +167,7 @@
             // 
             this.cboUserCategory.Font = new System.Drawing.Font("DaytonaPro-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboUserCategory.FormattingEnabled = true;
-            this.cboUserCategory.Location = new System.Drawing.Point(226, 138);
+            this.cboUserCategory.Location = new System.Drawing.Point(226, 139);
             this.cboUserCategory.Name = "cboUserCategory";
             this.cboUserCategory.Size = new System.Drawing.Size(124, 28);
             this.cboUserCategory.TabIndex = 9;
@@ -185,6 +204,7 @@
             // txtID
             // 
             this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtID.Enabled = false;
             this.txtID.Font = new System.Drawing.Font("DaytonaPro-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID.Location = new System.Drawing.Point(226, 14);
             this.txtID.Name = "txtID";
@@ -323,25 +343,6 @@
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // txtMobileNo
-            // 
-            this.txtMobileNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMobileNo.Font = new System.Drawing.Font("DaytonaPro-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMobileNo.Location = new System.Drawing.Point(226, 172);
-            this.txtMobileNo.Name = "txtMobileNo";
-            this.txtMobileNo.Size = new System.Drawing.Size(250, 28);
-            this.txtMobileNo.TabIndex = 17;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("DaytonaPro-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(14, 176);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 20);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Mobile No *";
             // 
             // frmUserMaster
             // 

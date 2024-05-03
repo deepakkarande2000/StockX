@@ -33,7 +33,8 @@ namespace StockX.Utility
             this.label2 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.lblParamName = new System.Windows.Forms.Label();
             this.txtBillNo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@ namespace StockX.Utility
             this.cboReportName = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -90,7 +90,7 @@ namespace StockX.Utility
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnPrint);
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.lblParamName);
             this.panel1.Controls.Add(this.txtBillNo);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
@@ -105,15 +105,31 @@ namespace StockX.Utility
             this.panel1.Size = new System.Drawing.Size(901, 66);
             this.panel1.TabIndex = 14;
             // 
-            // label5
+            // btnPrint
             // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label5.Location = new System.Drawing.Point(26, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 16);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Bill No.";
+            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrint.BackgroundImage = global::StockX.Properties.Resources.print_icon;
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPrint.FlatAppearance.BorderSize = 0;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnPrint.Location = new System.Drawing.Point(749, 14);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(54, 32);
+            this.btnPrint.TabIndex = 9;
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // lblParamName
+            // 
+            this.lblParamName.AutoSize = true;
+            this.lblParamName.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblParamName.Location = new System.Drawing.Point(26, 38);
+            this.lblParamName.Name = "lblParamName";
+            this.lblParamName.Size = new System.Drawing.Size(52, 16);
+            this.lblParamName.TabIndex = 8;
+            this.lblParamName.Text = "Bill No.";
             // 
             // txtBillNo
             // 
@@ -189,6 +205,7 @@ namespace StockX.Utility
             this.cboReportName.Name = "cboReportName";
             this.cboReportName.Size = new System.Drawing.Size(238, 24);
             this.cboReportName.TabIndex = 1;
+            this.cboReportName.SelectedValueChanged += new System.EventHandler(this.cboReportName_SelectedValueChanged);
             // 
             // label1
             // 
@@ -210,22 +227,6 @@ namespace StockX.Utility
             this.crystalReportViewer1.Size = new System.Drawing.Size(901, 396);
             this.crystalReportViewer1.TabIndex = 15;
             this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrint.BackgroundImage = global::StockX.Properties.Resources.print_icon;
-            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPrint.FlatAppearance.BorderSize = 0;
-            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnPrint.Location = new System.Drawing.Point(749, 14);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(54, 32);
-            this.btnPrint.TabIndex = 9;
-            this.btnPrint.UseVisualStyleBackColor = false;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // frmReports
             // 
@@ -265,7 +266,7 @@ namespace StockX.Utility
         private System.Windows.Forms.DateTimePicker dtpToDate;
         private System.Windows.Forms.DateTimePicker dtpFromDate;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblParamName;
         private System.Windows.Forms.TextBox txtBillNo;
         private System.Windows.Forms.Button btnPrint;
     }

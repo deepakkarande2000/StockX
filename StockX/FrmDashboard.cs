@@ -148,9 +148,29 @@ namespace StockX
             ClearAllControls();
             GetTenantDetails();
             SetDefaultValues();
-            LoadTodaysSummary();
-            LoadOutstanding();
-            LoadItemStock();
+            RefreshData();
+        }
+
+        private async void LoadChart()
+        {
+            DataSet dsSales = await billingBLL.GetSales();
+
+            if (dsSales != null)
+            {
+                if (dsSales.Tables.Count > 0)
+                {
+                    chtSales.Series.Clear();
+                    pnlDetails2.AutoScroll = true;
+                    foreach (var item in dsSales.Tables[0].AsEnumerable())
+                    {
+                        chtSales.Series.Add(item.ItemArray[0].ToString());                        
+                    }
+                    foreach (var item in dsSales.Tables[0].AsEnumerable())
+                    {
+                        chtSales.Series[item.ItemArray[0].ToString()].Points.AddXY(item.ItemArray[0].ToString(), item.ItemArray[1].ToString());
+                    }                    
+                }
+            }
         }
 
         private async void LoadItemStock()
@@ -161,7 +181,7 @@ namespace StockX
             {
                 if(GlobalCollection.dsStockDetails.Tables.Count >0)
                 {
-                    gdvStockDetails.Size=new Size(pnlDetails1.Width,pnlDetails1.Height);
+                    gdvStockDetails.Size=new Size(pnlDetails1.Width,pnlDetails1.Height/2);
                     gdvStockDetails.AutoGenerateColumns = false;
                     gdvStockDetails.DataSource = GlobalCollection.dsStockDetails.Tables[0];
                 }
@@ -174,7 +194,7 @@ namespace StockX
 
             StringBuilder sb = new StringBuilder();
             if (GlobalCollection.dsPendingResult != null)
-            {
+            {                
                 lblTotalOutstanding.Text = "₹ " + GlobalCollection.dsPendingResult.Tables[0]
                     .AsEnumerable().Sum(c => c.Field<decimal>("Total Pending")).ToString();
 
@@ -279,7 +299,9 @@ namespace StockX
             pnlDetails1.Location = new Point(0, pnlCard1.Height);
 
             pnlDetails2.Size = new Size(pnlSummaryDetails.Width / 2, (pnlSummaryDetails.Height - (pnlCard1.Height)));
-            pnlDetails2.Location = new Point(pnlDetails1.Width, pnlCard1.Height);          
+            pnlDetails2.Location = new Point(pnlDetails1.Width, pnlCard1.Height);
+
+            chtSales.Size = pnlDetails2.Size;
 
             lblDate.Location = new Point(btnMinimize.Location.X - ((lblDate.Text.Length+btnClose.Width+btnClose.Width)*2), lblDate.Location.Y);
         }
@@ -487,11 +509,17 @@ namespace StockX
 
         private void mnuRefresh_Click(object sender, EventArgs e)
         {
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
             LoadTodaysSummary();
             LoadOutstanding();
             LoadItemStock();
+            LoadChart();
         }
-        
+
         private void smnuSettings_Click(object sender, EventArgs e)
         {
             LoadSettingScreen();
@@ -507,6 +535,12 @@ namespace StockX
         {
             FrmPendingClearance frmPayInOut = new FrmPendingClearance(NewscreenLocationX, NewscreenLocationY, _totalWidth - pnlMenuBar.Width, pnlSummaryDetails.Height);
             frmPayInOut.ShowDialog();
+        }
+
+        private void smnuDailyExpenses_Click(object sender, EventArgs e)
+        {
+            frmDailyExpenses frmDailyExpenses=new frmDailyExpenses(NewscreenLocationX, NewscreenLocationY, _totalWidth - pnlMenuBar.Width, pnlSummaryDetails.Height);
+            frmDailyExpenses.ShowDialog();
         }
     }
 }
